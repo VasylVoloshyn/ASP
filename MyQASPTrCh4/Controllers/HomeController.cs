@@ -57,5 +57,49 @@ namespace MyQASPTrCh4.Controllers
             return View("Result", (object)String.Format("Total: {0:c}", totalCart));
         }
 
+        public ViewResult UseExtensionEnumerable()
+        {
+            ShoppingCart cart = new ShoppingCart
+            {
+                Products = new List<Product>
+                {
+                    new Product { Name = "Kayak", Price = 275M},
+                    new Product { Name = "LifeJacket", Price = 48.95M},
+                    new Product { Name = "Ball", Price = 19.50M},
+                    new Product { Name = "Flag", Price= 34.95M}
+                }
+            };
+
+            Product[] productArray =
+                {
+                    new Product { Name = "Kayak", Price = 275M},
+                    new Product { Name = "LifeJacket", Price = 48.95M},
+                    new Product { Name = "Ball", Price = 19.50M},
+                    new Product { Name = "Flag", Price= 34.95M}
+                };
+            decimal totalCart = cart.TotalPrice();
+            decimal totalArray = productArray.TotalPrice();
+            return View("Result", (object)String.Format("Total Cart: {0:c}, Total Array: {1:c}", totalCart, totalArray));
+        }
+
+        public ViewResult UseFilterExtension()
+        {
+            IEnumerable<Product> products = new ShoppingCart 
+            {
+                Products = new List<Product> { 
+                    new Product { Name = "Kayak", Category ="WaterSports", Price = 275M},
+                    new Product { Name = "LifeJacket", Category ="WaterSports",Price = 48.95M},
+                    new Product { Name = "Ball", Category ="Football", Price = 19.50M},
+                    new Product { Name = "Flag", Category ="Football", Price= 34.95M}
+                }
+            };
+            decimal total = 0;
+            foreach (Product prod in products.FilterByCategory("Football"))
+            {
+                total += prod.Price;
+            }
+            return View("Result", (object)String.Format("Total price: {0:c}", total));
+        }
+
     }
 }
