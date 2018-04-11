@@ -27,5 +27,16 @@ namespace MyQASPTrCh4.Models
                 }
             }
         }
+
+        public static IEnumerable<Product> Filter(this IEnumerable<Product> prductEnum, Func<Product, bool> selectorParam)
+        {
+            foreach(Product prod in prductEnum)
+            {
+                if (selectorParam(prod))
+                {
+                    yield return prod;
+                }
+            }
+        }
     }
 }

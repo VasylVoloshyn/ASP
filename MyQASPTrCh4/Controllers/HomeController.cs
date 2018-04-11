@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 
@@ -99,6 +100,87 @@ namespace MyQASPTrCh4.Controllers
                 total += prod.Price;
             }
             return View("Result", (object)String.Format("Total price: {0:c}", total));
+        }
+
+        public ViewResult UseDelegateFilter()
+        {
+            IEnumerable<Product> products = new ShoppingCart
+            {
+                Products = new List<Product> {
+                    new Product { Name = "Kayak", Category ="WaterSports", Price = 275M},
+                    new Product { Name = "LifeJacket", Category ="WaterSports",Price = 48.95M},
+                    new Product { Name = "Ball", Category ="Football", Price = 19.50M},
+                    new Product { Name = "Flag", Category ="Football", Price= 34.95M}
+                }
+            };
+            Func<Product, bool> categoryFilter = delegate (Product prod)
+             {
+                 return prod.Category == "Football";
+             };
+
+            decimal total = 0;
+            foreach (Product prod in products.Filter(categoryFilter))
+            {
+                total += prod.Price;
+            }
+            return View("Result", (object)String.Format("Total price: {0:c}", total));
+        }
+
+        public ViewResult UseLambdaFilter()
+        {
+            IEnumerable<Product> products = new ShoppingCart
+            {
+                Products = new List<Product> {
+                    new Product { Name = "Kayak", Category ="WaterSports", Price = 275M},
+                    new Product { Name = "LifeJacket", Category ="WaterSports",Price = 48.95M},
+                    new Product { Name = "Ball", Category ="Football", Price = 19.50M},
+                    new Product { Name = "Flag", Category ="Football", Price= 34.95M}
+                }
+            };
+            Func<Product, bool> categoryFilter = prod => prod.Category == "Football";
+            
+            decimal total = 0;
+            foreach (Product prod in products.Filter(categoryFilter))
+            {
+                total += prod.Price;
+            }
+            return View("Result", (object)String.Format("Total price: {0:c}", total));
+        }
+
+        public ViewResult UseLambdaFilter2()
+        {
+            IEnumerable<Product> products = new ShoppingCart
+            {
+                Products = new List<Product> {
+                    new Product { Name = "Kayak", Category ="WaterSports", Price = 275M},
+                    new Product { Name = "LifeJacket", Category ="WaterSports",Price = 48.95M},
+                    new Product { Name = "Ball", Category ="Football", Price = 19.50M},
+                    new Product { Name = "Flag", Category ="Football", Price= 34.95M}
+                }
+            };
+            
+            decimal total = 0;
+            foreach (Product prod in products.Filter(prod => prod.Category == "Football" && prod.Price > 20))
+            {
+                total += prod.Price;
+            }
+            return View("Result", (object)String.Format("Total price: {0:c}", total));
+        }
+
+        public ViewResult CreaneAnonArray()
+        {
+            var oddsAndEnds = new[]
+            {
+                new {Name = "MVC", Category = "Pattern"},
+                new {Name = "Hat", Category = "Clothing"},
+                new {Name = "Apple", Category = "Fruit"}
+            };
+            StringBuilder result = new StringBuilder();
+            foreach ( var item in oddsAndEnds)
+            {
+                result.Append(item.Name).Append(" ");
+            }
+            return View("Result", (object)result.ToString());
         }
 
     }
