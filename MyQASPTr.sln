@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2020
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyQASPTr", "MyQASPTr\MyQASPTr.csproj", "{0235A4B0-F2C8-49FD-B6C4-7FA6C1A565CD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyQASPTrCh4", "MyQASPTrCh4\MyQASPTrCh4.csproj", "{83CCF081-C221-461E-A7B1-054F0EC7570A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0235A4B0-F2C8-49FD-B6C4-7FA6C1A565CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0235A4B0-F2C8-49FD-B6C4-7FA6C1A565CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0235A4B0-F2C8-49FD-B6C4-7FA6C1A565CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0235A4B0-F2C8-49FD-B6C4-7FA6C1A565CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{83CCF081-C221-461E-A7B1-054F0EC7570A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83CCF081-C221-461E-A7B1-054F0EC7570A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83CCF081-C221-461E-A7B1-054F0EC7570A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83CCF081-C221-461E-A7B1-054F0EC7570A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CDD0054D-4012-4541-BB31-4C98C9005F39}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,51 @@
+﻿@model MyQASPTr.Models.GuestResponse
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Thanks</title>
+    <style>
+        body {background-color: #F1F1F1;}
+    </style>
+</head>
+<body>
+    @{ 
+        try
+        {
+            WebMail.SmtpServer = "smtp-mail.outlook.com";
+            WebMail.SmtpPort = 587;
+            WebMail.EnableSsl = true;
+            WebMail.UserName = "voloshyn.vasyl@outlook.com";
+            WebMail.Password = "WSX_Parol";
+            WebMail.From = "voloshyn.vasyl@outlook.com";
+            WebMail.Send("voloshyn.v.v@gmail.com", "ESVP Notification", Model.Name + " is " +((Model.WillAttend ?? false) ? "": "not") + " attending");
+        }
+        catch (Exception e)
+        {
+            @:<b>  Sorry - we could not sent you email</b>
+            @:e.Message.ToString()
+        }
+    }
+    <div class="text-center"> 
+        <h1>Thanks, @Model.Name</h1>
+        <div class="lead">
+            @if (Model.WillAttend == true)
+            {
+                @:Cool, you are coming!
+            }
+            else
+            {
+                @:Sorry to hear that.
+            }
+        </div>
+    </div>
+</body>
+</html>
