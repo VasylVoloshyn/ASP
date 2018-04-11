@@ -11,9 +11,9 @@ namespace MyQASPTrCh4.Controllers
     public class HomeController : Controller
     {
         // GET: Home
-        public string Index()
+        public ViewResult Index()
         {
-            return "Navigate to URL to show Example";
+            return View("Index");
         }
 
         public ViewResult AutoProperty()
