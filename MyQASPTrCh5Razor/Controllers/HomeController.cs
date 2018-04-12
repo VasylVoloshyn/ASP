@@ -34,5 +34,16 @@ namespace MyQASPTrCh5Razor.Controllers
             ViewBag.Supplier = null;
             return View(myProduct);
         }
+        public ActionResult DemoArray()
+        {
+            Product[] array =
+                {
+                    new Product { Name = "Kayak", Price = 275M},
+                    new Product { Name = "LifeJacket", Price = 48.95M},
+                    new Product { Name = "Ball", Price = 19.50M},
+                    new Product { Name = "Flag", Price= 34.95M}
+                };
+            return View(array);
+        }
     }
 }
