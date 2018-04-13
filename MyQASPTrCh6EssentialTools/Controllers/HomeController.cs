@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Ninject;
 
 namespace MyQASPTrCh6EssentialTools.Controllers
 {
@@ -18,7 +19,10 @@ namespace MyQASPTrCh6EssentialTools.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            IValueCalculator calculator = new LinqValueCalculator();
+            IKernel ninjectKernel = new StandardKernel();
+            ninjectKernel.Bind<IValueCalculator>().To<LinqValueCalculator>();
+            IValueCalculator calculator = ninjectKernel.Get<IValueCalculator>();
+
             ShoppingCart cart = new ShoppingCart(calculator) { Products = products };
             decimal totalValue = cart.CalculateProductTotal();
             return View(totalValue);
