@@ -34,6 +34,7 @@ namespace MyQASPTrCh6EssentialTools.Controllers
         {
             IKernel ninjectKernel = new StandardKernel();
             ninjectKernel.Bind<IValueCalculator>().To<LinqValueCalculator>();
+            ninjectKernel.Bind<IDiscountHelper>().To<DefaultDiscountHelper>().WithConstructorArgument("discountParam", 0M);
             IValueCalculator calc = ninjectKernel.Get<IValueCalculator>();
 
             ShoppingCart cart = new ShoppingCart(calc) { Products = products };
