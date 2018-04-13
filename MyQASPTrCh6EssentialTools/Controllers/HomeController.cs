@@ -18,7 +18,7 @@ namespace MyQASPTrCh6EssentialTools.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            LinqValueCalculator calculator = new LinqValueCalculator();
+            IValueCalculator calculator = new LinqValueCalculator();
             ShoppingCart cart = new ShoppingCart(calculator) { Products = products };
             decimal totalValue = cart.CalculateProductTotal();
             return View(totalValue);

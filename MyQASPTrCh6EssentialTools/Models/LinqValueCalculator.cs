@@ -5,7 +5,7 @@ using System.Web;
 
 namespace MyQASPTrCh6EssentialTools.Models
 {
-    public class LinqValueCalculator
+    public class LinqValueCalculator: IValueCalculator
     {
         public decimal ValueProducts(IEnumerable<Product> products)
         {
