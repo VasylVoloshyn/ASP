@@ -18,7 +18,7 @@ namespace MyQASPTrCh6EssentialTools.Controllers
                     new Product { Name = "Flag", Category ="Football", Price= 34.95M}
         };
 
-        public HomeController(IValueCalculator calcParam)
+        public HomeController(IValueCalculator calcParam, IValueCalculator calc2)
         {
             calculator = calcParam;
         }

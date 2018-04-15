@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using MyQASPTrCh6EssentialTools.Models;
 using Ninject;
+using Ninject.Web.Common;
 
 namespace MyQASPTrCh6EssentialTools.Infrastructure
 {
@@ -29,8 +30,9 @@ namespace MyQASPTrCh6EssentialTools.Infrastructure
 
         private void AddBindings()
         {
-            kernel.Bind<IValueCalculator>().To<LinqValueCalculator>();
+            kernel.Bind<IValueCalculator>().To<LinqValueCalculator>().InRequestScope();
             kernel.Bind<IDiscountHelper>().To<DefaultDiscountHelper>().WithPropertyValue("DiscountSize", 50M).WithConstructorArgument("discountParam", 40M);
+            kernel.Bind<IDiscountHelper>().To<FlexibleDiscountHelper>().WhenInjectedInto<LinqValueCalculator>();
         }
     }
 }
